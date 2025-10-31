@@ -4,7 +4,6 @@ class Solution {
     static int[] dy = {0, 0, -1, 1};
     
     public int solution(int[][] maps) {
-        
         int n = maps.length;
         int m = maps[0].length;
         
@@ -20,7 +19,7 @@ class Solution {
             int[] cur = q.poll();
             int x = cur[0], y = cur[1];
             
-            if (x == n-1 && y == m-1){
+            if(x == n-1 && y == m-1){
                 return dist[x][y];
             }
             
@@ -28,14 +27,16 @@ class Solution {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 
-                if (0 <= nx && nx < n && 0<= ny && ny < m && maps[nx][ny] == 1 && !visited[nx][ny]){
+                if(0<=nx && nx < n && 0<=ny && ny < m && maps[nx][ny] == 1 && !visited[nx][ny]){
+                    q.add(new int[]{nx, ny});
                     visited[nx][ny] = true;
                     dist[nx][ny] = dist[x][y] +1;
-                    q.add(new int[]{nx, ny});
-                    
                 }
             }
         }
-    return -1;
+        
+            
+        
+        return -1;
     }
 }
