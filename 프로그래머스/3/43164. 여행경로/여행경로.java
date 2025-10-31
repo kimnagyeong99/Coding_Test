@@ -5,12 +5,12 @@ class Solution {
         int n = tickets.length;
         
         Arrays.sort(tickets, (a,b) -> {
-                   if(!a[0].equals(b[0])) return a[0].compareTo(b[0]);
-                   return a[1].compareTo(b[1]);
+            if(!a[0].equals(b[0])) return a[0].compareTo(b[0]);
+            return a[1].compareTo(b[1]);
         });
         
         boolean[] used = new boolean[n];
-        List<String> path = new ArrayList<>(); 
+        List<String> path = new ArrayList<>();
         
         path.add("ICN");
         
@@ -18,9 +18,8 @@ class Solution {
         
         return path.toArray(new String[0]);
     }
-    
-    public boolean dfs(String cur, String[][] tickets, boolean[] used, List<String> path, int usecount) {
-        if (usecount == tickets.length){
+    public boolean dfs(String cur, String[][] tickets, boolean[] used, List<String> path, int usecount){
+        if(usecount == tickets.length){
             return true;
         }
         
@@ -29,14 +28,14 @@ class Solution {
                 used[i] = true;
                 path.add(tickets[i][1]);
                 
-                if (dfs(tickets[i][1], tickets, used, path, usecount+1)){
-                    return true; }
+                if(dfs(tickets[i][1], tickets, used, path, usecount+1)){
+                    return true;
+                }
                 
                 used[i] = false;
-                path.remove(path.size()-1);
+                path.remove(path.size() - 1);
             }
         }
-        
         return false;
     }
 }
